@@ -1,0 +1,41 @@
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+
+- task: TerraformTaskV3@3
+  displayName: 'terraform init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'testingnfraspn'
+    backendAzureRmResourceGroupName: 'vivind'
+    backendAzureRmStorageAccountName: 'storagestgviv'
+    backendAzureRmContainerName: 'statefile'
+    backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTaskV3@3
+  displayName: 'terraform plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'testingnfraspn'
+
+- task: TerraformTaskV3@3
+  displayName: 'terraform apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'testingnfraspn'
+
+# - task: TerraformTaskV3@3
+#   displayName: 'terraform destroy'
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'destroy'
+#     environmentServiceNameAzureRM: 'testingnfraspn'
