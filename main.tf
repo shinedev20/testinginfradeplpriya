@@ -26,7 +26,7 @@ resource "azurerm_resource_group" "rg111" {
   location = var.location
 }
 
-resource "azurerm_service_plan" "sp" {
+resource "azurerm_service_plan" "sp111" {
   name                = join("-", [var.env, var.reg, var.dom,"sp",var.index])
   resource_group_name = azurerm_resource_group.rg111.name
   location            = azurerm_resource_group.rg111.location
@@ -36,8 +36,8 @@ resource "azurerm_service_plan" "sp" {
 resource "azurerm_windows_web_app" "wapp" {
   name                = join("-", [var.env, var.reg, var.dom,"wapp",var.index])
   resource_group_name = azurerm_resource_group.rg111.name
-  location            = azurerm_service_plan.sp.location
-  service_plan_id     = azurerm_service_plan.sp.id
+  location            = azurerm_service_plan.sp111.location
+  service_plan_id     = azurerm_service_plan.sp111.id
 
   site_config {}
 }
