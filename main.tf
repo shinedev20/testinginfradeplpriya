@@ -21,6 +21,27 @@ provider "azurerm" {
   # Configuration options
   features {}
 }
+resource "azurerm_resource_group" "rg111" {
+  name     = join("-", [var.env, var.reg, var.dom,"rg",var.index])
+  location = var.location
+}
+
+resource "azurerm_service_plan" "sp" {
+  name                = join("-", [var.env, var.reg, var.dom,"sp",var.index])
+  resource_group_name = azurerm_resource_group.rg111.name
+  location            = azurerm_resource_group.rg111.location
+  sku_name            = "P1v2"
+}
+
+resource "azurerm_windows_web_app" "wapp" {
+  name                = join("-", [var.env, var.reg, var.dom,"wapp",var.index])
+  resource_group_name = azurerm_resource_group.rg111.name
+  location            = azurerm_service_plan.sp.location
+  service_plan_id     = azurerm_service_plan.sp.id
+
+  site_config {}
+}
+
 
 # creating resource group
 
