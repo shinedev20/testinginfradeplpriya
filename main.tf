@@ -30,6 +30,7 @@ resource "azurerm_service_plan" "sp111" {
   name                = join("-", [var.env, var.reg, var.dom,"sp",var.index])
   resource_group_name = azurerm_resource_group.rg111.name
   location            = azurerm_resource_group.rg111.location
+  os_type             = "Windows"
   sku_name            = "P1v2"
 }
 
