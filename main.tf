@@ -22,7 +22,7 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "rg11111" {
-  name     = join("-", [var.env, var.reg, var.dom,"rg",var.index])
+  name     = join("-", [var.env, var.reg, var.dom,"rg10",var.index])
   location = var.location
 }
 
