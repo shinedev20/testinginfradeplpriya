@@ -21,6 +21,7 @@ provider "azurerm" {
   # Configuration options
   features {}
 }
+/*
 resource "azurerm_resource_group" "rg11111" {
   name     = join("-", [var.env, var.reg, var.dom,"rg10",var.index])
   location = var.location
@@ -46,7 +47,7 @@ resource "azurerm_windows_web_app" "wap" {
 
 # creating resource group
 
-/*
+
 resource "azurerm_resource_group" "rg0123" {
 
   location = var.location
