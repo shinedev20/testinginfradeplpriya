@@ -337,7 +337,7 @@ resource "azurerm_key_vault" "keyvl98" {
   }
 }
 resource "azurerm_storage_account" "stg198" {
-  name                     = join("-", [var.env, var.reg, var.dom, "stg", var.index])
+  name                     = join("", [var.env, var.reg, var.dom, "stg", var.index])
   resource_group_name      = azurerm_resource_group.rg98.name
   location                 = var.location
   account_tier             = "Standard"
@@ -378,7 +378,7 @@ resource "azurerm_cdn_endpoint" "cdnpt1" {
 }
 
 resource "azurerm_storage_account" "stg298" {
-  name                     = join("-", [var.env, var.reg, var.dom, "stg", var.index1])
+  name                     = join("", [var.env, var.reg, var.dom, "stg", var.index1])
   resource_group_name      = azurerm_resource_group.rg98.name
   location                 = var.location
   account_tier             = "Standard"
