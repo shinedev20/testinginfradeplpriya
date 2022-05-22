@@ -22,7 +22,7 @@ provider "azurerm" {
   features {}
 }
 
-
+/*
 resource "azurerm_resource_group" "rg99" {
   name     = join("-", [var.env, var.reg, var.dom,"rgnw",var.index])
   location = var.location
@@ -456,7 +456,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 }
-/*
+
 # creating resource group
 
 
