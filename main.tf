@@ -199,22 +199,19 @@ resource "azurerm_application_gateway" "agynetwork" {
     backend_http_settings_name = local.http_setting_name
   }
 }
-resource "azurerm_app_service_plan" "appsrv99" {
+resource "azurerm_service_plan" "appsrv99" {
   name                = join("-", [var.env, var.reg, var.dom,"ap-pl",var.index])
   location            = var.location
   resource_group_name = azurerm_resource_group.rg99.name
-
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  os_type             = "Linux"
+  sku_name            = "P1v2"
 }
 
 resource "azurerm_app_service" "apsr99" {
   name                = join("-", [var.env, var.reg, var.dom,"app",var.index])
   location            = var.location
   resource_group_name = azurerm_resource_group.rg99.name
-  app_service_plan_id = azurerm_app_service_plan.appsrv99.id
+  app_service_plan_id = azurerm_service_plan.appsrv99.id
 
   site_config {
     dotnet_framework_version = "v4.0"
@@ -340,7 +337,7 @@ resource "azurerm_key_vault" "keyvl98" {
   }
 }
 resource "azurerm_storage_account" "stg198" {
-  name                     = stg1paas
+  name                     = join("-", [var.env, var.reg, var.dom, "stg", var.index])
   resource_group_name      = azurerm_resource_group.rg98.name
   location                 = var.location
   account_tier             = "Standard"
@@ -381,7 +378,7 @@ resource "azurerm_cdn_endpoint" "cdnpt1" {
 }
 
 resource "azurerm_storage_account" "stg298" {
-  name                     = stg2paas
+  name                     = join("-", [var.env, var.reg, var.dom, "stg", var.index1])
   resource_group_name      = azurerm_resource_group.rg98.name
   location                 = var.location
   account_tier             = "Standard"
